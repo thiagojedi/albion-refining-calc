@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    header {
+      -webkit-app-region: drag;
+      height: 60px;
+      background-color: sienna;
+    }
+
+    body {
+      background-color: beige;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="container-fluid">
+    <button type="button" class="close" aria-label="Close" onclick="window.close()" style="-webkit-app-region: no-drag">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h1>Refining Calc</h1>
+  </header>
+  <div id="app"></div>
+</body>
+
+<script>
+  import Vue from 'vue';
+  import App from './components/app';
+
+  const app = new Vue(App).$mount('#app');
+</script>
+
+</html>

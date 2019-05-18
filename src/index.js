@@ -16,7 +16,10 @@ const createWindow = async () => {
     width: 800,
     height: 600,
     frame: false,
-    title: 'Calculator by JediCOMP'
+    title: 'Calculator by JediCOMP',
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   // and load the index.html of the app.

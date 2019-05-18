@@ -3,18 +3,18 @@
     <div class="row">
       <div class="col-sm">
         <h2>Recipe</h2>
-        <new-material v-on:add-material="addComponent"></new-material>
+        <new-material @add-material="addComponent"></new-material>
         <ul class="list-group">
           <li
             class="list-group-item d-flex justify-content-between align-items-center"
             v-for="comp in componentList"
-            v-bind:key="comp.key"
+            :key="comp.key"
           >
             <span>Material {{comp.key + 1}}</span>
             <span>{{comp.price}} silver x {{comp.quantity}} un.</span>
             <span
               class="btn badge badge-pill badge-danger"
-              v-on:click="removeComponent(comp.key)"
+              @click="removeComponent(comp.key)"
             >remove</span>
           </li>
           <li class="list-group-item">Total Cost: {{componentCost}}</li>
@@ -106,22 +106,7 @@
 </template>
 
 <script>
-function rounds(rate) {
-  return Math.log2(rate);
-}
-
-function total(quantity, rate) {
-  if (rate === 0) return quantity;
-
-  const r = rate / 100;
-
-  return Math.round(quantity * ((Math.pow(r, rounds(rate)) - 1) / (r - 1)));
-}
-
-function costByTax(price, tax) {
-  return (price * tax * 5) / 100;
-}
-
+import { costByTax, totalWithReturnRate } from "../calculations";
 import NewMaterial from "./new-material.vue";
 export default {
   components: {
@@ -152,7 +137,7 @@ export default {
       );
     },
     total() {
-      return total(this.amount, this.rate);
+      return totalWithReturnRate(this.amount, this.rate);
     }
   },
   methods: {
